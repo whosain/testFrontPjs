@@ -43,6 +43,7 @@ const App = () => {
 
 
   const createUserHandler = () => {
+    setEdit(false)
     setShow(true)
   }
 

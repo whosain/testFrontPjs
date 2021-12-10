@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Modal, Col, FloatingLabel } from "react-bootstrap";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import { useDispatch,  } from "react-redux";
+import { Button, Form, Modal} from "react-bootstrap";
+
 import FormContainer from "../components/FormContainer";
 import { createUser,updateUser } from "../actions/userActions";
+
 
 const ModalCustome = ({
   show,
@@ -22,7 +22,6 @@ const ModalCustome = ({
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
   const [location, setLocation] = useState([]);
-  const [message, setMessage] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -39,6 +38,9 @@ const ModalCustome = ({
         }, data.usrID)
       );
     } else {
+
+      console.log(location,'<<<<<<< array locate');
+
       dispatch(
         createUser({
           usrName: username,
@@ -52,10 +54,16 @@ const ModalCustome = ({
     }
 
     // console.log("submit here");
+
   };
 
   useEffect(() => {
-    if (data) {
+
+    if (data && isEdit) {
+
+        
+    // console.log(data.locationsIDS,"<<<<<<<");
+
       setUsername(data.usrName);
       setFullname(data.usrFullName);
       setPassword(data.usrPswd);
